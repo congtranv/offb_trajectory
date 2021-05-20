@@ -1,0 +1,4 @@
+<launch>
+    <rosparam command="load" file="$(find offb_trajectory)/config/config.yaml" />
+    <node name="offb_trajectory" pkg="offb_trajectory" type="offb_trajectory" output="screen"></node>
+</launch>
