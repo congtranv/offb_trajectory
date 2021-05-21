@@ -33,7 +33,11 @@ target_link_libraries(offb_trajectory_lib
 )
 
 add_executable(offb_trajectory src/offb_trajectory_node.cpp)
-
 target_link_libraries(offb_trajectory
   offb_trajectory_lib
+)
+
+add_executable(setmode src/set_mode.cpp)
+target_link_libraries(setmode
+  ${catkin_LIBRARIES}
 )
