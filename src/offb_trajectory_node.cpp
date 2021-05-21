@@ -49,13 +49,15 @@ int main(int argc, char **argv)
 	
     std::printf("\n[INFO] How do you want to fly?\n");
     char c;
-    std::printf("- Choose 1 for HOVERING at a z height\n");
-    std::printf("- Choose 2 to fly with trajectory\n");
+    std::printf("- Choose 1 for HOVERING at a Z height\n");
+    std::printf("- Choose 2 to fly with SETPOINTs\n");
+    // std::printf("- Choose 3 to fly with TRAJECTORY generation\n");
+    // std::printf("(1/2/3): ");
     std::printf("(1/2): ");
     std::cin >> c;
     if(c == '1')
     {
-        std::printf("[ INFO] Hover at a z height\n");
+        std::printf("[ INFO] Hover at a Z height\n");
         std::printf("z = ");
         double x_hover, y_hover, z_hover;
         std::cin >> z_hover;
@@ -141,7 +143,8 @@ int main(int argc, char **argv)
     }
     else if(c == '2')
     {
-        std::printf("[ INFO] Waiting for stable initial \n");
+        std::printf("[ INFO] Fly with Setpoints\n");
+        std::printf("\n[ INFO] Waiting for stable initial \n");
 
         ros::Time t_check;
         t_check = ros::Time::now();
@@ -252,7 +255,7 @@ int main(int argc, char **argv)
                 }
                 if(target_reached && final_position_)
                 {
-                    std::printf("[ INFO] Reached FINAL position: [%.3f, %.3f, %.3f]\n", current_pose_.pose.position.x, current_pose_.pose.position.y, current_pose_.pose.position.z);
+                    std::printf("\n[ INFO] Reached FINAL position: [%.3f, %.3f, %.3f]\n", current_pose_.pose.position.x, current_pose_.pose.position.y, current_pose_.pose.position.z);
                     std::printf("- Hovering\n");
                     ros::param::get("hover_time",hover_time_);
                     hoverAt(hover_time_, targetTransfer(x_target_[target_num_-1], y_target_[target_num_-1], z_target_[target_num_-1]), rate);
@@ -307,7 +310,7 @@ int main(int argc, char **argv)
                 }
                 if(target_reached && final_position_)
                 {
-                    std::printf("[ INFO] Reached FINAL position: [%.8f, %.8f, %.3f]\n", current_global_.latitude, current_global_.longitude, current_global_.altitude);
+                    std::printf("\n[ INFO] Reached FINAL position: [%.8f, %.8f, %.3f]\n", current_global_.latitude, current_global_.longitude, current_global_.altitude);
                     std::printf("- Hovering\n");
                     ros::param::get("hover_time",hover_time_);
                     hoverAt(hover_time_, targetTransfer(goal_enu.x + x_offset_, goal_enu.y + y_offset_, goal_enu.z + z_offset_), rate);
@@ -319,6 +322,11 @@ int main(int argc, char **argv)
             rate.sleep();
         }
     }
+    // else if(c == '3')
+    // {
+    //     std::printf("[ INFO] Fly with Trajectory generation\n");
+        
+    // }
     else
     {
         std::printf("\n[ WARN] Not avaible function - Please Relaunch\n");

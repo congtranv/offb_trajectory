@@ -169,7 +169,7 @@ void inputLocal()
     }
     for(int i = 0; i < target_num_; i++)
     {
-        std::printf("- Target (%d) postion (in meter):\n",i);
+        std::printf("- Target (%d) postion (in meter):\n", i+1);
         std::printf(" x(%d): ", i+1);
         std::cin >> x; x_target_.push_back(x);
         std::printf(" y(%d): ", i+1);
@@ -195,7 +195,7 @@ void inputGlobal()
     }
     for(int i = 0; i < goal_num_; i++)
     {
-        std::printf("- Goal (%d) postion:\n",i);
+        std::printf("- Goal (%d) postion:\n", i+1);
         std::printf(" Latitude (%d) (in degree): ", i+1);
         std::cin >> lat; lat_goal_.push_back(lat);
         std::printf(" Longitude (%d) (in degree): ", i+1);
